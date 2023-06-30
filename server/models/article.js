@@ -8,6 +8,7 @@ const ArticleSchema = new Schema({
   title: String,
   content: String,
   date: { type: Date, default: Date.now },
+  published: Boolean,
 });
 
 ArticleSchema.virtual("date_formatted").get(function () {

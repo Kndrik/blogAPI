@@ -7,6 +7,7 @@ const CommentModel = new Schema({
   author: { type: Schema.Types.ObjectId, ref: "User" },
   content: String,
   date: { type: Date, default: Date.now },
+  article: { type: Schema.Types.ObjectId, ref: "Article" },
 });
 
 CommentModel.virtual("date_formatted").get(function () {
