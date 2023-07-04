@@ -20,7 +20,7 @@ exports.login_post = asyncHandler(async (req, res) => {
     bcrypt.compare(password, existingUser.password, function (err, result) {
       if (result) {
         const opts = {
-          expiresIn: 1200,
+          expiresIn: 86400,
         };
         const secret = process.env.SECRET_KEY;
         const token = jwt.sign({ email }, secret, opts);
