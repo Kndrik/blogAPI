@@ -9,11 +9,6 @@ router.post("/", articlesController.post_article);
 
 router.put("/:articleId", articlesController.update_article);
 
-router.delete("/:articleId", (req, res) => {
-  res.json({
-    message: "delete not implemented yet",
-    id: req.params.articleId,
-  });
-});
+router.delete("/:articleId", articlesController.delete_article);
 
 module.exports = router;

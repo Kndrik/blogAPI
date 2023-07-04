@@ -89,3 +89,23 @@ exports.update_article = [
     }
   }),
 ];
+
+exports.delete_article = asyncHandler(async (req, res) => {
+  try {
+    const deleted = await Article.findByIdAndDelete(req.params.articleId);
+    if (deleted === null) {
+      res.status(403).json({
+        message: `There is no article with id ${req.params.articleId} in the database`,
+      });
+    } else {
+      res.json({
+        message: "Article successfully deleted",
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      message: `Couldn't delete or find article ${req.params.articleId} in the database.`,
+      err,
+    });
+  }
+});
