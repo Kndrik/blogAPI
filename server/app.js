@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use("/api", apiRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/articles", articlesRouter);
-app.use("/api/comments", commentsRouter);
+app.use("/api/articles/:articleId/comments", commentsRouter);
 app.use("/api/users", usersRouter);
 
 // catch 404 and forward to error handler
