@@ -3,9 +3,7 @@ const Article = require("../models/article");
 
 const { body, validationResult } = require("express-validator");
 
-const passport = require("passport");
-const jwtStrategy = require("../strategies/jwt");
-passport.use(jwtStrategy);
+const { passport } = require("./auth");
 
 exports.get_all_articles = asyncHandler(async (req, res) => {
   try {

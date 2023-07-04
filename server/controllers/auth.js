@@ -2,6 +2,12 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 
+const passport = require("passport");
+const jwtStrategy = require("../strategies/jwt");
+passport.use(jwtStrategy);
+
+exports.passport = passport;
+
 const User = require("../models/user");
 
 const { body, validationResult } = require("express-validator");
