@@ -4,15 +4,9 @@ const commentsController = require("../controllers/comments");
 
 router.get("/", commentsController.get_comments);
 
-router.post("/", (req, res) => {
-  res.send(
-    `Create comment under article ${req.params.articleId}. Not implemented yet`
-  );
-});
+router.post("/", commentsController.post_comment);
 
-router.put("/:commentId", (req, res) => {
-  res.send(`Update comment ${req.params.commentId}. Not implemented yet`);
-});
+router.put("/:commentId", commentsController.edit_comment);
 
 router.delete("/:commentId", (req, res) => {
   res.send(`Delete comment ${req.params.commentId}. Not implemented yet`);
