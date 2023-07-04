@@ -6,6 +6,24 @@ const Article = require("../models/article");
 
 const { passport } = require("./auth");
 
+const checkArticleId = asyncHandler(async (req, res, next) => {
+  try {
+    const article = await Article.findById(req.params.articleId);
+    if (article === null) {
+      res.status(400).json({
+        message: "Can't find the article in the database.",
+      });
+    } else {
+      next();
+    }
+  } catch (err) {
+    res.status(400).json({
+      message: "Article Id not valid",
+      err,
+    });
+  }
+});
+
 exports.get_comments = asyncHandler(async (req, res) => {
   try {
     const comments = await Comment.find({ article: req.params.articleId });
@@ -80,23 +98,7 @@ exports.edit_comment = [
       next();
     }
   },
-  asyncHandler(async (req, res, next) => {
-    try {
-      const article = await Article.findById(req.params.articleId);
-      if (article === null) {
-        res.status(400).json({
-          message: "Can't find the article in the database.",
-        });
-      } else {
-        next();
-      }
-    } catch (err) {
-      res.status(400).json({
-        message: "Article Id not valid",
-        err,
-      });
-    }
-  }),
+  checkArticleId,
   asyncHandler(async (req, res) => {
     try {
       const updatedData = {
@@ -108,6 +110,30 @@ exports.edit_comment = [
     } catch (err) {
       res.status(400).json({
         message: "There was an error editing the comment",
+        err,
+      });
+    }
+  }),
+];
+
+exports.delete_comment = [
+  passport.authenticate("jwt", { session: false }),
+  checkArticleId,
+  asyncHandler(async (req, res) => {
+    try {
+      const deleted = await Comment.findByIdAndDelete(req.params.commentId);
+      if (deleted === null) {
+        res.status(403).json({
+          message: `There is no comment with id ${req.params.commentId} in the database`,
+        });
+      } else {
+        res.json({
+          message: "Comment successfully deleted",
+        });
+      }
+    } catch (err) {
+      res.status(400).json({
+        message: "There was an error deliting the comment",
         err,
       });
     }

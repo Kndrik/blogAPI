@@ -8,8 +8,6 @@ router.post("/", commentsController.post_comment);
 
 router.put("/:commentId", commentsController.edit_comment);
 
-router.delete("/:commentId", (req, res) => {
-  res.send(`Delete comment ${req.params.commentId}. Not implemented yet`);
-});
+router.delete("/:commentId", commentsController.delete_comment);
 
 module.exports = router;
