@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
+const commentsController = require("../controllers/comments");
 
-router.get("/", (req, res) => {
-  res.send(
-    `Get comments from article ${req.params.articleId}. Not implemented yet`
-  );
-});
+router.get("/", commentsController.get_comments);
 
 router.post("/", (req, res) => {
   res.send(
