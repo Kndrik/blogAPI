@@ -1,5 +1,9 @@
+import useAuthRedirect from "../hooks/useAuthRedirect";
+
 const Redirect = (props) => {
-  return <div className="Redirect"></div>;
+  useAuthRedirect();
+
+  return <div className="Redirect">Redirect page</div>;
 };
 
 export default Redirect;
