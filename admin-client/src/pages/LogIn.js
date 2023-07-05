@@ -12,10 +12,13 @@ const Login = (props) => {
     event.preventDefault();
 
     try {
-      const result = await axios.post("http://localhost:3000/api/auth/login", {
-        email,
-        password,
-      });
+      const result = await axios.post(
+        process.env.REACT_APP_API_URL + "/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       localStorage.setItem("blogJWT", result.data.token);
       navigate("/dashboard");
