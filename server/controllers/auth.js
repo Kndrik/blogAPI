@@ -101,3 +101,18 @@ exports.signup_post = [
     }
   }),
 ];
+
+exports.jwt_check = asyncHandler(async (req, res) => {
+  try {
+    const secret = process.env.SECRET_KEY;
+    const decoded = jwt.verify(req.body.token, secret);
+    const existingUser = await User.find({ email: decoded.email }).exec();
+    if (!existingUser) {
+      res.json({ valid: false });
+    } else {
+      res.json({ valid: true });
+    }
+  } catch (err) {
+    res.json({ valid: false });
+  }
+});
