@@ -19,7 +19,7 @@ exports.login_post = asyncHandler(async (req, res) => {
     const existingUser = await User.findOne({ email: email }).exec();
 
     if (!existingUser) {
-      return res.status(401).json({ message: "Auth failed" });
+      return res.status(401).json({ message: "No user found with this email" });
     }
 
     // Check in db for email and password
