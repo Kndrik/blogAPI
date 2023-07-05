@@ -10,4 +10,6 @@ router.put("/:commentId", commentsController.edit_comment);
 
 router.delete("/:commentId", commentsController.delete_comment);
 
+router.get("/:commentId", commentsController.get_one_comment);
+
 module.exports = router;

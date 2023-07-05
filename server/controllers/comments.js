@@ -133,7 +133,28 @@ exports.delete_comment = [
       }
     } catch (err) {
       res.status(400).json({
-        message: "There was an error deliting the comment",
+        message: "There was an error deleting the comment",
+        err,
+      });
+    }
+  }),
+];
+
+exports.get_one_comment = [
+  checkArticleId,
+  asyncHandler(async (req, res) => {
+    try {
+      const comment = await Comment.findById(req.params.commentId);
+      if (comment === null) {
+        res.status(403).json({
+          message: `There is no comment with id ${req.params.commentId} in the database`,
+        });
+      } else {
+        res.json(comment);
+      }
+    } catch (err) {
+      res.status(400).json({
+        message: "There was an error retreiving the comment",
         err,
       });
     }
