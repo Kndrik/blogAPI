@@ -111,3 +111,21 @@ exports.delete_article = [
     }
   }),
 ];
+
+exports.get_one_article = asyncHandler(async (req, res) => {
+  try {
+    const article = await Article.findById(req.params.articleId);
+    if (article === null) {
+      res.status(403).json({
+        message: `There is no article with id ${req.params.articleId} in the database`,
+      });
+    } else {
+      res.json(article);
+    }
+  } catch (err) {
+    res.status(500).json({
+      message: `Couldn't retreive article ${req.params.articleId} from the database.`,
+      err,
+    });
+  }
+});
