@@ -1,16 +1,15 @@
-import Sidebar from "./components/Sidebar";
 import LogIn from "./pages/LogIn";
-import Redirect from "./pages/Redirect";
+import Dashboard from "./pages/Dashboard";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Redirect />} />
-          <Route path="/dashboard/*" element={<div>Dashboard</div>} />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<div>Sign up</div>} />
         </Routes>
