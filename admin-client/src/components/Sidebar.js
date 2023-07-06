@@ -19,7 +19,7 @@ const Sidebar = (props) => {
   };
 
   return (
-    <div className="w-20 py-5 flex flex-col justify-between items-center shadow-xl px-4">
+    <div className="w-20 py-5 flex flex-col justify-between items-center shadow-xl px-4 bg-white">
       <div className="flex flex-col items-center w-full">
         <button
           onClick={handleLogoClick}
@@ -30,8 +30,8 @@ const Sidebar = (props) => {
         <button
           onClick={handleNewArticleClick}
           style={{
-            "background-color": "#0093E9",
-            "background-image":
+            backgroundColor: "#0093E9",
+            backgroundImage:
               "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
           }}
           className="mb-5 aspect-square flex justify-center items-center w-full hover:shadow-md p-1 rounded-lg"
@@ -42,8 +42,8 @@ const Sidebar = (props) => {
       <button
         onClick={handleLogOutClick}
         style={{
-          "background-color": "#FF9A8B",
-          "background-image":
+          backgroundColor: "#FF9A8B",
+          backgroundImage:
             "linear-gradient(67deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)",
         }}
         className="hover:shadow-md flex justify-center items-center w-full aspect-square p-1 rounded-lg"

@@ -1,18 +1,23 @@
 import useAuthRedirect from "../hooks/useAuthRedirect";
 
 import Sidebar from "../components/Sidebar";
+import ArticleListView from "./ArticleListView";
+import ArticleView from "./ArticleView";
+import NewArticleForm from "./NewArticleForm";
+
+import { Routes, Route } from "react-router-dom";
 
 const Dashboard = (props) => {
   useAuthRedirect();
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-slate-100">
       <Sidebar />
-      <div className="flex-1 p-5 min-h-full bg-slate-100">
-        <div className="text-3xl text-center font-extrabold mt-3">
-          Dashboard
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<ArticleListView />} />
+        <Route path="/new" element={<NewArticleForm />} />
+        <Route path="/:articleId" element={<ArticleView />} />
+      </Routes>
     </div>
   );
 };
