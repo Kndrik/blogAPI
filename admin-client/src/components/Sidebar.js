@@ -29,14 +29,24 @@ const Sidebar = (props) => {
         </button>
         <button
           onClick={handleNewArticleClick}
-          className="mb-5 aspect-square bg-blue-500 hover:bg-blue-600 flex justify-center items-center w-full p-1 rounded-lg"
+          style={{
+            "background-color": "#0093E9",
+            "background-image":
+              "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
+          }}
+          className="mb-5 aspect-square flex justify-center items-center w-full hover:shadow-md p-1 rounded-lg"
         >
           <img src={plus} alt="plus logo" className="hover:cursor-pointer" />
         </button>
       </div>
       <button
         onClick={handleLogOutClick}
-        className=" bg-red-500 hover:bg-red-600 flex justify-center items-center w-full aspect-square p-1 rounded-lg"
+        style={{
+          "background-color": "#FF9A8B",
+          "background-image":
+            "linear-gradient(67deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%)",
+        }}
+        className="hover:shadow-md flex justify-center items-center w-full aspect-square p-1 rounded-lg"
       >
         <img src={logout} alt="logout logo" className="hover:cursor-pointer" />
       </button>

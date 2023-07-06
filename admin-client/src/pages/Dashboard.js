@@ -10,7 +10,9 @@ const Dashboard = (props) => {
     <div className="flex min-h-screen">
       <Sidebar />
       <div className="flex-1 p-5 bg-gray-100 min-h-full">
-        <div className="text-xl text-center font-extrabold mt-3">Dashboard</div>
+        <div className="text-3xl text-center font-extrabold mt-3">
+          Dashboard
+        </div>
       </div>
     </div>
   );
