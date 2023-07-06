@@ -7,7 +7,7 @@ const { passport } = require("./auth");
 
 exports.get_all_articles = asyncHandler(async (req, res) => {
   try {
-    const allArticles = await Article.find({}).exec();
+    const allArticles = await Article.find({}).populate("author").exec();
     res.json(allArticles);
   } catch (error) {
     res
@@ -114,7 +114,9 @@ exports.delete_article = [
 
 exports.get_one_article = asyncHandler(async (req, res) => {
   try {
-    const article = await Article.findById(req.params.articleId);
+    const article = await Article.findById(req.params.articleId)
+      .populate("author")
+      .exec();
     if (article === null) {
       res.status(403).json({
         message: `There is no article with id ${req.params.articleId} in the database`,
