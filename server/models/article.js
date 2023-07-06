@@ -15,4 +15,6 @@ ArticleSchema.virtual("date_formatted").get(function () {
   return DateTime.fromJSDate(this.date).toLocaleString(DateTime.DATE_MED);
 });
 
+ArticleSchema.set("toJSON", { virtuals: true });
+
 module.exports = mongoose.model("Article", ArticleSchema);

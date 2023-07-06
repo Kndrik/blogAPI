@@ -14,4 +14,6 @@ CommentModel.virtual("date_formatted").get(function () {
   return DateTime.fromJSDate(this.date).toLocaleString(DateTime.DATE_MED);
 });
 
+CommentModel.set("toJSON", { virtuals: true });
+
 module.exports = mongoose.model("Comment", CommentModel);
