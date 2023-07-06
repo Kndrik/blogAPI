@@ -19,7 +19,7 @@ const Sidebar = (props) => {
   };
 
   return (
-    <div className="w-20 py-5 flex flex-col justify-between items-center shadow-2xl px-4">
+    <div className="w-20 py-5 flex flex-col justify-between items-center shadow-xl px-4">
       <div className="flex flex-col items-center w-full">
         <button
           onClick={handleLogoClick}

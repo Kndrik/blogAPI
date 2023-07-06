@@ -1,5 +1,4 @@
 import useAuthRedirect from "../hooks/useAuthRedirect";
-import { useNavigate } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
 
@@ -9,7 +8,7 @@ const Dashboard = (props) => {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <div className="flex-1 p-5 bg-gray-100 min-h-full">
+      <div className="flex-1 p-5 min-h-full bg-slate-100">
         <div className="text-3xl text-center font-extrabold mt-3">
           Dashboard
         </div>
