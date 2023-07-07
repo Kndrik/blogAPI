@@ -44,6 +44,7 @@ exports.post_article = [
       await article.save();
       return res.status(200).json({
         message: "Successfully created a post on a protected Route.",
+        articleId: article._id,
       });
     } catch (err) {
       return res.status(500).json({

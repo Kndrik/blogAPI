@@ -52,7 +52,7 @@ const ArticleView = (props) => {
         <p className="text-sm text-gray-500 mt-1">{article.date_formatted}</p>
         <p
           className="mt-10 text-lg text-gray-800 mb-10"
-          style={{ "white-space": "pre-wrap" }}
+          style={{ whiteSpace: "pre-wrap" }}
         >
           {decodeHtml(article.content)}
         </p>

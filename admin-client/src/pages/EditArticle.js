@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 
 import { getArticleById, editArticle } from "../api";
 
+import { decodeHtml } from "../Utilities";
+
 const EditArticle = (props) => {
   const [loading, setLoading] = useState(true);
   const [article, setArticle] = useState({});
@@ -17,8 +19,8 @@ const EditArticle = (props) => {
       try {
         const data = await getArticleById(articleId);
         setArticle(data);
-        setTitle(data.title);
-        setContent(data.content);
+        setTitle(decodeHtml(data.title));
+        setContent(decodeHtml(data.content));
         setPublished(data.published);
         setLoading(false);
       } catch (err) {
