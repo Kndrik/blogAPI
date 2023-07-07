@@ -54,9 +54,28 @@ export const editArticle = async (articleId, data) => {
 };
 
 export const getJWT = async (data) => {
-  const result = await axios.post(
-    process.env.REACT_APP_API_URL + "/auth/login",
-    data
-  );
-  return result.data.token;
+  try {
+    const result = await axios.post(
+      process.env.REACT_APP_API_URL + "/auth/login",
+      data
+    );
+    return result.data.token;
+  } catch (err) {
+    throw new Error("Failed to retreive the JWT", err);
+  }
+};
+
+export const deleteComment = async (articleId, commentId) => {
+  try {
+    await axios.delete(
+      `${process.env.REACT_APP_API_URL}/articles/${articleId}/comments/${commentId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("blogJWT")}`,
+        },
+      }
+    );
+  } catch (err) {
+    throw new Error("Failed to delete the comment", err);
+  }
 };
