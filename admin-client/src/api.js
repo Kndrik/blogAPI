@@ -79,3 +79,20 @@ export const deleteComment = async (articleId, commentId) => {
     throw new Error("Failed to delete the comment", err);
   }
 };
+
+export const createArticle = async (data) => {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/articles`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("blogJWT")}`,
+        },
+      }
+    );
+    return response;
+  } catch (err) {
+    throw new Error("Failed to create the article", err);
+  }
+};

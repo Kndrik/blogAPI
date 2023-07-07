@@ -9,6 +9,8 @@ import { deleteArticle } from "../api";
 
 import { useState } from "react";
 
+import { decodeHtml } from "../Utilities";
+
 const ArticleView = (props) => {
   const { articleId } = useParams();
   const navigate = useNavigate();
@@ -36,11 +38,15 @@ const ArticleView = (props) => {
   return (
     <div className="flex-1 flex justify-center">
       <div className="w-full lg:w-4/6 bg-white p-10 px-20">
-        <h1 className="text-5xl font-extrabold mb-2">{article.title}</h1>
+        <h1 className="text-5xl font-extrabold mb-2">
+          {decodeHtml(article.title)}
+        </h1>
         <p>
           By{" "}
           <span className="text-blue-500 font-bold">
-            {article.author.first_name + " " + article.author.last_name}
+            {decodeHtml(article.author.first_name) +
+              " " +
+              decodeHtml(article.author.last_name)}
           </span>
         </p>
         <p className="text-sm text-gray-500 mt-1">{article.date_formatted}</p>
@@ -48,7 +54,7 @@ const ArticleView = (props) => {
           className="mt-10 text-lg text-gray-800 mb-10"
           style={{ "white-space": "pre-wrap" }}
         >
-          {article.content}
+          {decodeHtml(article.content)}
         </p>
         <button
           onClick={handleClickEdit}

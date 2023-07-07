@@ -4,6 +4,8 @@ import crossLogo from "../svgs/cross.svg";
 
 import { deleteComment } from "../api";
 
+import { decodeHtml } from "../Utilities";
+
 const Comment = (props) => {
   const [hovering, setHovering] = useState(false);
   const [hide, setHide] = useState(false);
@@ -30,12 +32,12 @@ const Comment = (props) => {
       className="my-3 relative"
     >
       <h4 className="font-bold mb-1">
-        {props.comment.author}{" "}
+        {decodeHtml(props.comment.author)}{" "}
         <span className="text-sm text-gray-500 font-normal">
           - {props.comment.date_formatted}
         </span>
       </h4>
-      <p className="text-md">{props.comment.content}</p>
+      <p className="text-md">{decodeHtml(props.comment.content)}</p>
       {hovering ? (
         <button
           onClick={handleClickDelete}
