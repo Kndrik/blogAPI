@@ -1,14 +1,17 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Comment from "../components/Comment";
 
 import useArticle from "../hooks/useArticle";
 import useComments from "../hooks/useComments";
 
+import { deleteArticle } from "../api";
+
 import { useState } from "react";
 
 const ArticleView = (props) => {
   const { articleId } = useParams();
+  const navigate = useNavigate();
   const { article, loading } = useArticle(articleId);
   const { comments, commentsLoading } = useComments(articleId);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -17,7 +20,10 @@ const ArticleView = (props) => {
     return <div>Loading...</div>;
   }
 
-  const handleDelete = async () => {};
+  const handleDelete = async () => {
+    await deleteArticle(articleId);
+    navigate("/dashboard");
+  };
 
   const commentList = comments.map((comment) => {
     return <Comment comment={comment} />;

@@ -22,4 +22,17 @@ export const getArticleById = async (articleId) => {
   }
 };
 
-export const deleteArticle = async (articleId) => {};
+export const deleteArticle = async (articleId) => {
+  try {
+    await axios.delete(
+      process.env.REACT_APP_API_URL + `/articles/${articleId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("blogJWT")}`,
+        },
+      }
+    );
+  } catch (err) {
+    throw new Error("Failed to delete the article", err);
+  }
+};
