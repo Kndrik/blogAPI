@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getJWT } from "../api";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -12,15 +12,9 @@ const Login = (props) => {
     event.preventDefault();
 
     try {
-      const result = await axios.post(
-        process.env.REACT_APP_API_URL + "/auth/login",
-        {
-          email,
-          password,
-        }
-      );
-
-      localStorage.setItem("blogJWT", result.data.token);
+      const data = { email, password };
+      const token = await getJWT(data);
+      localStorage.setItem("blogJWT", token);
       navigate("/dashboard");
     } catch (error) {
       setError(error.response.data.message);

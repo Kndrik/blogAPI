@@ -25,8 +25,12 @@ const ArticleView = (props) => {
     navigate("/dashboard");
   };
 
+  const handleClickEdit = () => {
+    navigate(`/dashboard/${articleId}/edit`);
+  };
+
   const commentList = comments.map((comment) => {
-    return <Comment comment={comment} />;
+    return <Comment comment={comment} key={comment._id} />;
   });
 
   return (
@@ -40,8 +44,16 @@ const ArticleView = (props) => {
           </span>
         </p>
         <p className="text-sm text-gray-500 mt-1">{article.date_formatted}</p>
-        <p className="mt-10 text-lg text-gray-800 mb-10">{article.content}</p>
-        <button className="mr-1 p-3 rounded-lg bg-blue-600 text-white w-24 hover:cursor-pointer hover:bg-blue-500">
+        <p
+          className="mt-10 text-lg text-gray-800 mb-10"
+          style={{ "white-space": "pre-wrap" }}
+        >
+          {article.content}
+        </p>
+        <button
+          onClick={handleClickEdit}
+          className="mr-1 p-3 rounded-lg bg-blue-600 text-white w-24 hover:cursor-pointer hover:bg-blue-500"
+        >
           Edit
         </button>
         {confirmDelete ? (

@@ -36,3 +36,27 @@ export const deleteArticle = async (articleId) => {
     throw new Error("Failed to delete the article", err);
   }
 };
+
+export const editArticle = async (articleId, data) => {
+  try {
+    await axios.put(
+      process.env.REACT_APP_API_URL + `/articles/${articleId}`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("blogJWT")}`,
+        },
+      }
+    );
+  } catch (err) {
+    throw new Error("Failed to edit the article", err);
+  }
+};
+
+export const getJWT = async (data) => {
+  const result = await axios.post(
+    process.env.REACT_APP_API_URL + "/auth/login",
+    data
+  );
+  return result.data.token;
+};

@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import ArticleListView from "./ArticleListView";
 import ArticleView from "./ArticleView";
 import NewArticleForm from "./NewArticleForm";
+import EditArticle from "./EditArticle";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -17,6 +18,7 @@ const Dashboard = (props) => {
         <Route path="/" element={<ArticleListView />} />
         <Route path="/new" element={<NewArticleForm />} />
         <Route path="/:articleId" element={<ArticleView />} />
+        <Route path="/:articleId/edit" element={<EditArticle />} />
       </Routes>
     </div>
   );
