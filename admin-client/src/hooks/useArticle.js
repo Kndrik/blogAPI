@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { getArticleById } from "../api";
 
 const useArticle = (articleId) => {
   const [article, setArticle] = useState({});
@@ -7,12 +7,13 @@ const useArticle = (articleId) => {
 
   useEffect(() => {
     const getArticle = async () => {
-      const result = await axios.get(
-        process.env.REACT_APP_API_URL + `/articles/${articleId}`
-      );
-      const data = result.data;
-      setArticle(data);
-      setLoading(false);
+      try {
+        const data = await getArticleById(articleId);
+        setArticle(data);
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching the article", err);
+      }
     };
     getArticle();
   }, []);

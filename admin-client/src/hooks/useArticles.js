@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { getAllArticles } from "../api";
 
 const useArticles = () => {
   const [articles, setArticles] = useState([]);
@@ -8,10 +8,8 @@ const useArticles = () => {
   useEffect(() => {
     const getArticles = async () => {
       try {
-        const response = await axios.get(
-          process.env.REACT_APP_API_URL + "/articles"
-        );
-        setArticles(response.data);
+        const data = await getAllArticles();
+        setArticles(data);
         setLoading(false);
       } catch (err) {
         console.error("Error fetching articles:", err);
